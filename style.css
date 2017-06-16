@@ -1,0 +1,18 @@
+/* PASSAGE TO BE TYPED */
+#passage {
+  font-family: Abel;
+  font-size: 20pt;
+  text-align: center;
+  background-color: #effbff;
+}
+
+form {
+  display: block;
+  text-align: center;
+}
+
+#user-input {
+  font-family: Open Sans;
+  font-size: 15pt;
+  text-align: left;
+}
