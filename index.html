@@ -10,7 +10,7 @@
     <link type="text/css" rel="stylesheet" href="style.css" />
   </head>
 
-  <body onload="initialize">
+  <body >
 
     <!-- PASSAGE TO BE TYPED -->
     <div id="passage">
@@ -20,12 +20,12 @@
     <!-- USER INPUT BOX -->
     <div>
     <form>
-      <input id="user-input" type="text" placeholder="Type text here">
+      <input id="user-input" type="text" placeholder="Type text here" onkeyup="onKeyPress()">
     </form>
     </div>
 
     <!-- LINK JAVASCRIPT -->
-    <script src="typeracer.js"></script>;
+    <script src="typeracer.js"></script>
 
   </body>
 
