@@ -1,3 +1,7 @@
+body {
+  text-align: center;
+}
+
 /* PASSAGE TO BE TYPED */
 #passage {
   font-family: Abel;
@@ -15,4 +19,27 @@ form {
   font-family: Open Sans;
   font-size: 15pt;
   text-align: left;
+  width: 70%;
+}
+
+/* End of game stats container */
+.popup {
+  position: relative;
+  display: inline-block;
+}
+
+/* End of game stats - text */
+.popup .popuptext {
+  visibility: hidden;
+  background-color: #effbff;
+  font-family: Open Sans;
+  color: black;
+  padding: 30px;
+  border: 2px solid #beced3;
+  text-align: center;
+}
+
+/* Make popup visible when done */
+.popup .show {
+  visibility: visible;
 }

@@ -10,7 +10,7 @@
     <link type="text/css" rel="stylesheet" href="style.css" />
   </head>
 
-  <body >
+  <body>
 
     <!-- PASSAGE TO BE TYPED -->
     <div id="passage">
@@ -20,9 +20,18 @@
     <!-- USER INPUT BOX -->
     <div>
     <form>
-      <input id="user-input" type="text" placeholder="Type text here" onkeyup="onKeyPress()">
+      <input id="user-input" type="text" placeholder="Type text here" onclick="timer()" onkeyup="onKeyPress()">
     </form>
     </div>
+
+    <div class="popup">
+      <div class="popuptext" id="stats">
+        <h1 id="done"></h1>
+        <h4 id="wpm"></h4>
+        <h4 id="time"></h4>
+      </div>
+    </div>
+
 
     <!-- LINK JAVASCRIPT -->
     <script src="typeracer.js"></script>
