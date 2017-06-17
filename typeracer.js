@@ -1,3 +1,27 @@
+// WHEN USER CLICKS ON TAB
+function openTab(evt, tab_name) {
+  // Declare all variables
+  var i, tabcontent, tablinks;
+
+  // Hide all tabs
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++){
+    tabcontent[i].style.display = "none";
+  }
+
+  // Make all tabs inactive
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++){
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+
+  }
+
+  // Show current tab
+  document.getElementById(tab_name).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+
+// TIMES USER
 function timer(){
   var id = setInterval(frame, 500);
   var userInput = document.getElementById("user-input");
@@ -15,9 +39,15 @@ function timer(){
 }
 
 function enable() {
-  document.getElementById("user-input").disabled = false;
+  var userInput = document.getElementById("user-input")
+  userInput.disabled = false;
+  userInput.value = "";
+  document.getElementById("stats").classList.toggle("show");
+  document.getElementById("progress-bar").style.width = "0.5%";
+  timer();
 }
 
+// WHILE GAME IS RUNNING //
 function onKeyPress() {
     // Create array containing passage
     var str = "The quick brown fox jumps over the lazy dog!";
@@ -33,7 +63,7 @@ function onKeyPress() {
         incorrectInput(userInput);
         return;
       }
-      else correctInput(userInput);
+      else correctInput(userInput, i);
     }
 
     if (str === userInput.value){
@@ -42,16 +72,27 @@ function onKeyPress() {
 
 }
 
+// CHECK IF USER INPUT IS CORRECT/INCORRECT
 function incorrectInput(userInput) {
+  var prog = document.getElementById("progress-bar");
+  prog.style.backgroundColor = "red";
+
   userInput.style.backgroundColor = "red";
   userInput.style.color = "black";
 }
 
-function correctInput(userInput) {
-  userInput.style.color = "green";
+function correctInput(userInput, index) {
+  var prog = document.getElementById("progress-bar");
+  var progPercent = (index + 1) * 2.3;
+
+  prog.style.backgroundColor = "#4eb288";
+  prog.style.width = progPercent + "%";
+
+  userInput.style.color = "#469976";
   userInput.style.backgroundColor = "white";
 }
 
+// DISPLAY END OF GAME STATS
 function displayStats(time){
   var popup = document.getElementById("stats");
   var wpmStat = document.getElementById("wpm");
@@ -60,7 +101,7 @@ function displayStats(time){
   var wpm = 8 / time * 60;
 
   title.innerHTML = "good job!";
-  wpmStat.innerHTML = "WPM: " + wpm;
+  wpmStat.innerHTML = "WPM: " + wpm.toPrecision(3);
   timeStat.innerHTML = "Time: " + time + "s";
 
   popup.classList.toggle("show");

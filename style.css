@@ -1,13 +1,81 @@
 body {
   text-align: center;
+  background-color: #effbff;
+  margin: 0;
+  padding: 0;
+}
+
+/* NAVIGATION BAR */
+.tabs {
+  display: block;
+  top: 0;
+  background-color: #c6eeef;
+}
+
+/* TAB LINKS CONTAINER */
+.buttons {
+  float: left;
+  margin-top: 2%;
+}
+
+/* TAB LINKS */
+.tablinks {
+  background-color: #c6eeef;
+  border: none;
+  outline: none;
+  font-size: 15pt;
+  font-family: Abel;
+  padding-top: 3%;
+}
+
+.tablinks:hover {
+  background-color: #a7cdce;
+  transition: 0.3s;
+}
+
+/* TAB WAS CLICKED ON */
+div.tabs .buttons button.active {
+  background-color: #a7cdce;
+  color: white;
+}
+
+/* TAB CONTENT */
+.tabcontent {
+  display: none;
+}
+
+.tabcontent h3 {
+  font-family: Abel;
+  font-size: 20pt;
+}
+
+#home {
+  display: block;
+}
+
+#logo {
+  margin: 0;
+  padding-top: 2%;
+  text-align: right;
+  font-family: Abel;
+  font-size: 25pt;
+}
+
+/* PROGRESS BAR */
+#progress-bar {
+  height: 10px;
+  width: 0.5%;
+  background-color: #4eb288;
 }
 
 /* PASSAGE TO BE TYPED */
 #passage {
+  display: inline-block;
   font-family: Abel;
   font-size: 20pt;
-  text-align: center;
   background-color: #effbff;
+  text-align: center;
+  padding: 0 50px;
 }
 
 form {
@@ -19,7 +87,8 @@ form {
   font-family: Open Sans;
   font-size: 15pt;
   text-align: left;
-  width: 70%;
+  width: 50%;
+  outline: none;
 }
 
 /* End of game stats container */
@@ -31,11 +100,11 @@ form {
 /* End of game stats - text */
 .popup .popuptext {
   visibility: hidden;
-  background-color: #effbff;
+  background-color: #94a3a8;
   font-family: Open Sans;
-  color: black;
+  color: white;
   padding: 30px;
-  border: 2px solid #beced3;
+  border: 2px solid white;
   text-align: center;
 }
 

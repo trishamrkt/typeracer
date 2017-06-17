@@ -11,25 +11,59 @@
   </head>
 
   <body>
+    <!-- NAVIGATION TABS -->
+    <div class="tabs">
 
-    <!-- PASSAGE TO BE TYPED -->
-    <div id="passage">
-      <p> The quick brown fox jumps over the lazy dog! </p>
-    </div>
-
-    <!-- USER INPUT BOX -->
-    <div>
-    <form>
-      <input id="user-input" type="text" placeholder="Type text here" onclick="timer()" onkeyup="onKeyPress()">
-    </form>
-    </div>
-
-    <div class="popup">
-      <div class="popuptext" id="stats">
-        <h1 id="done"></h1>
-        <h4 id="wpm"></h4>
-        <h4 id="time"></h4>
+      <div class="buttons">
+        <button class="tablinks active" onclick="openTab(event, 'home')">home</button>
+        <button class="tablinks" onclick="openTab(event, 'profile')">profile</button>
+        <button class="tablinks" onclick="openTab(event, 'high-score')">high scores</button>
+        <button class="tablinks" onclick="openTab(event, 'passages')">passage</button>
       </div>
+      <h2 id="logo">racetype</h2>
+    </div>
+
+    <!-- HOME PAGE - GAME -->
+    <div id="home" class="tabcontent">
+      <!-- PASSAGE TO BE TYPED -->
+      <div id="passage">
+         <p>The quick brown fox jumps over the lazy dog! </p>
+
+        <!-- PROGRESS BAR -->
+        <div id="progress-bar"></div>
+      </div>
+
+      <!-- USER INPUT BOX -->
+      <div>
+      <form>
+        <input id="user-input" type="text" placeholder="Type text here" onclick="timer()" onkeyup="onKeyPress()">
+      </form>
+      </div>
+
+      <!-- END OF GAME STATS -->
+      <div class="popup">
+        <div class="popuptext" id="stats">
+          <h1 id="done"></h1>
+          <h4 id="wpm"></h4>
+          <h4 id="time"></h4>
+          <button id="again" onclick="enable()">try again</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROFILE STATS -->
+    <div id="profile" class="tabcontent">
+      <h3>profile</h3>
+    </div>
+
+    <!-- HIGH SCORES -->
+    <div id="high-score" class="tabcontent">
+      <h3>high scores</h3>
+    </div>
+
+    <!-- PASSAGES -->
+    <div id="passages" class="tabcontent">
+      <h3>passages</h3>
     </div>
 
 
