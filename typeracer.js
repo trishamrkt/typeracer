@@ -21,20 +21,22 @@ function openTab(evt, tab_name) {
   evt.currentTarget.className += " active";
 }
 
-// TIMES USER
+// TIME USER
 function timer(){
-  var id = setInterval(frame, 500);
+  var id = setInterval(frame, 10);
   var userInput = document.getElementById("user-input");
   var str = "The quick brown fox jumps over the lazy dog!"
   var time = 0;
+  document.getElementById("logo").innerHTML = "racetype";
 
   function frame() {
     if (str === userInput.value){
       displayStats(time);
       clearInterval(id);
     }
-    else
-      time += 0.5;
+    else{
+      time += 0.01;
+    }
   }
 }
 
@@ -75,9 +77,9 @@ function onKeyPress() {
 // CHECK IF USER INPUT IS CORRECT/INCORRECT
 function incorrectInput(userInput) {
   var prog = document.getElementById("progress-bar");
-  prog.style.backgroundColor = "red";
+  prog.style.backgroundColor = "#e56060";
 
-  userInput.style.backgroundColor = "red";
+  userInput.style.backgroundColor = "#e56060";
   userInput.style.color = "black";
 }
 
@@ -98,11 +100,78 @@ function displayStats(time){
   var wpmStat = document.getElementById("wpm");
   var timeStat = document.getElementById("time");
   var title = document.getElementById("done");
-  var wpm = 8 / time * 60;
+  var wpm = 9 / time * 60;
+  var one, two, three, four, five;
+
+  one = document.getElementById("l-one");
+  two = document.getElementById("l-two");
+  three = document.getElementById("l-three");
+  four = document.getElementById("l-four");
+  five = document.getElementById("l-five");
 
   title.innerHTML = "good job!";
   wpmStat.innerHTML = "WPM: " + wpm.toPrecision(3);
-  timeStat.innerHTML = "Time: " + time + "s";
+  timeStat.innerHTML = "Time: " + time.toPrecision(3) + "s";
+
+  if (one.innerHTML === ""){
+    one.innerHTML = "1. " + wpm.toPrecision(3)+ " wpm";
+  }
+
+  else if (two.innerHTML === ""){
+    two.innerHTML = "2. " + wpm.toPrecision(3)+ " wpm";
+  }
+
+  else if (three.innerHTML === ""){
+    three.innerHTML = "3. " + wpm.toPrecision(3)+ " wpm";
+  }
+
+  else if (four.innerHTML === ""){
+    four.innerHTML = "4. " + wpm.toPrecision(3)+ " wpm";
+  }
+
+  else if (five.innerHTML === ""){
+
+    five.innerHTML = "5. " + wpm.toPrecision(3)+ " wpm";
+    getAvg(one, two, three, four, five);
+  }
+
+  else {
+    one.innerHTML = "1. \t" + wpm.toPrecision(3)+ " wpm";
+    resetScores();
+
+  }
 
   popup.classList.toggle("show");
+}
+
+function resetScores() {
+  var two = document.getElementById("l-two");
+  var three = document.getElementById("l-three");
+  var four = document.getElementById("l-four");
+  var five = document.getElementById("l-five");
+
+  two.innerHTML = "";
+  three.innerHTML = "";
+  four.innerHTML = "";
+  five.innerHTML = "";
+}
+
+function getAvg(one, two, three, four, five){
+  one = one.innerHTML.split(" ");
+  two = two.innerHTML.split(" ");
+  three = three.innerHTML.split(" ");
+  four = four.innerHTML.split(" ");
+  five = five.innerHTML.split(" ");
+
+  one = parseFloat(one[1]);
+  two = parseFloat(two[1]);
+  three = parseFloat(three[1]);
+  four = parseFloat(four[1]);
+  five = parseFloat(five[1]);
+
+  var avg = one + two + three + four + five;
+  avg = avg / 5;
+  document.getElementById("avg").innerHTML = "Avg: " + avg.toPrecision(3);
+
+
 }
