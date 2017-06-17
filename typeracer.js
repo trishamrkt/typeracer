@@ -21,17 +21,60 @@ function openTab(evt, tab_name) {
   evt.currentTarget.className += " active";
 }
 
+/******** FOR CHOOSING THE PASSAGE *****/
+function setPassage(evt, passage_num){
+  var passage = document.getElementById("game");
+  var str1 = "The quick brown fox jumps over the lazy dog!";
+  var str2 = "Happiness can be found, even in the darkest of times, if one remembers to turn on the light.";
+  var str3 = "Everybody is a Genius. But if you Judge a Fish by its Ability to Climb a Tree, It will live Its whole Life Believing that It Is Stupid.";
+  var columns = document.getElementsByClassName("p-column");
+
+  if (passage_num === 1){
+    passage.innerHTML = str1;
+    document.getElementById("playone").classList.add("show");
+    document.getElementById("playtwo").classList.remove("show");
+    document.getElementById("playthree").classList.remove("show");
+  }
+  else if (passage_num === 2){
+    passage.innerHTML = str2;
+    document.getElementById("playone").classList.remove("show");
+    document.getElementById("playtwo").classList.add("show");
+    document.getElementById("playthree").classList.remove("show");
+  }
+  else if (passage_num === 3){
+    passage.innerHTML = str3;
+    document.getElementById("playone").classList.remove("show");
+    document.getElementById("playtwo").classList.remove("show");
+    document.getElementById("playthree").classList.add("show");
+  }
+
+  for (var i = 0; i < columns.length;i++){
+    columns[i].className = columns[i].className.replace(" active", "");
+  }
+  evt.currentTarget.className += " active";
+}
+
+function play() {
+  var passtab = document.getElementById("pass-tab");
+  document.getElementById("passages").style.display = "none";
+  document.getElementById("home").style.display = "block";
+  passtab.className = passtab.className.replace(" active", "");
+  document.getElementById("home-tab").className += " active";
+  enable();
+  document.getElementById("stats").classList.remove("show");
+}
+
 // TIME USER
 function timer(){
   var id = setInterval(frame, 10);
   var userInput = document.getElementById("user-input");
-  var str = "The quick brown fox jumps over the lazy dog!"
+  var str = document.getElementById("game").innerHTML;
+  var arr = str.split(" ");
   var time = 0;
-  document.getElementById("logo").innerHTML = "racetype";
 
   function frame() {
     if (str === userInput.value){
-      displayStats(time);
+      displayStats(time, arr.length);
       clearInterval(id);
     }
     else{
@@ -44,7 +87,7 @@ function enable() {
   var userInput = document.getElementById("user-input")
   userInput.disabled = false;
   userInput.value = "";
-  document.getElementById("stats").classList.toggle("show");
+  document.getElementById("stats").classList.remove("show");
   document.getElementById("progress-bar").style.width = "0.5%";
   timer();
 }
@@ -52,7 +95,7 @@ function enable() {
 // WHILE GAME IS RUNNING //
 function onKeyPress() {
     // Create array containing passage
-    var str = "The quick brown fox jumps over the lazy dog!";
+    var str = document.getElementById("game").innerHTML;
     var arr = str.split("");
 
     // Create array of user input text
@@ -65,7 +108,7 @@ function onKeyPress() {
         incorrectInput(userInput);
         return;
       }
-      else correctInput(userInput, i);
+      else correctInput(userInput, i, arr.length);
     }
 
     if (str === userInput.value){
@@ -83,9 +126,9 @@ function incorrectInput(userInput) {
   userInput.style.color = "black";
 }
 
-function correctInput(userInput, index) {
+function correctInput(userInput, index, arrLength) {
   var prog = document.getElementById("progress-bar");
-  var progPercent = (index + 1) * 2.3;
+  var progPercent = (index + 1) * 100/arrLength;
 
   prog.style.backgroundColor = "#4eb288";
   prog.style.width = progPercent + "%";
@@ -95,12 +138,12 @@ function correctInput(userInput, index) {
 }
 
 // DISPLAY END OF GAME STATS
-function displayStats(time){
+function displayStats(time, word_count){
   var popup = document.getElementById("stats");
   var wpmStat = document.getElementById("wpm");
   var timeStat = document.getElementById("time");
   var title = document.getElementById("done");
-  var wpm = 9 / time * 60;
+  var wpm = word_count / time * 60;
   var one, two, three, four, five;
 
   one = document.getElementById("l-one");
@@ -113,6 +156,7 @@ function displayStats(time){
   wpmStat.innerHTML = "WPM: " + wpm.toPrecision(3);
   timeStat.innerHTML = "Time: " + time.toPrecision(3) + "s";
 
+  // Update last scores column in profile
   if (one.innerHTML === ""){
     one.innerHTML = "1. " + wpm.toPrecision(3)+ " wpm";
   }
@@ -138,10 +182,9 @@ function displayStats(time){
   else {
     one.innerHTML = "1. \t" + wpm.toPrecision(3)+ " wpm";
     resetScores();
-
   }
 
-  popup.classList.toggle("show");
+  popup.classList.add("show");
 }
 
 function resetScores() {

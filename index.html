@@ -15,10 +15,10 @@
     <div class="tabs">
 
       <div class="buttons">
-        <button class="tablinks active" onclick="openTab(event, 'home')">home</button>
+        <button class="tablinks active" id="home-tab" onclick="openTab(event, 'home')">home</button>
         <button class="tablinks" onclick="openTab(event, 'profile')">profile</button>
         <button class="tablinks" onclick="openTab(event, 'high-score')">high scores</button>
-        <button class="tablinks" onclick="openTab(event, 'passages')">passage</button>
+        <button class="tablinks" id="pass-tab" onclick="openTab(event, 'passages')">passage</button>
       </div>
       <h2 id="logo">racetype</h2>
     </div>
@@ -27,7 +27,7 @@
     <div id="home" class="tabcontent">
       <!-- PASSAGE TO BE TYPED -->
       <div id="passage">
-         <p>The quick brown fox jumps over the lazy dog! </p>
+         <p id="game">The quick brown fox jumps over the lazy dog!</p>
 
         <!-- PROGRESS BAR -->
         <div id="progress-bar"></div>
@@ -88,6 +88,23 @@
     <!-- PASSAGES -->
     <div id="passages" class="tabcontent">
       <h3>passages</h3>
+      <div class="p-column" id="p-one" onclick="setPassage(event, 1)">
+        <p class="sentence"> The quick brown fox... </p>
+        <p class="difficulty">RANDOM</p>
+        <button class="play" id="playone" onclick="play()">play</button>
+      </div>
+
+      <div class="p-column" id="p-two" onclick="setPassage(event, 2)">
+        <p class="sentence"> Happiness can be found...</p>
+        <p class="difficulty">HARRY POTTER</p>
+        <button class="play" id="playtwo" onclick="play()">play</button>
+      </div>
+
+      <div class="p-column" id="p-three" onclick="setPassage(event, 3)">
+        <p class="sentence">Everybody is a genius...</p>
+        <p class="difficulty">ALBERT EINSTEIN</p>
+        <button class="play" id="playthree" onclick="play()">play</button>
+      </div>
     </div>
 
 

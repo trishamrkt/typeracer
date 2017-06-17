@@ -78,6 +78,7 @@ div.tabs .buttons button.active {
   background-color: #effbff;
   text-align: center;
   padding: 0 50px;
+  width: 40%;
 }
 
 form {
@@ -142,3 +143,54 @@ form {
   font-size: 20pt;
 }
 /*********************************/
+
+
+/********** PASSAGES TAB *************/
+.p-column {
+  width: 30%;
+  height: 150px;
+  float: left;
+  font-family: Open Sans;
+  background-color: #aee7e8;
+  margin: 2% 1.5%;
+  font-size: 17pt;
+}
+
+.p-column:hover {
+  background-color: #a7cdce;
+  color: black;
+  transition: 0.3s;
+}
+
+.p-column.active {
+  background-color: #a7cdce;
+  color: white;
+}
+
+.p-column .sentence {
+  margin-top: 52px;
+}
+
+p.difficulty {
+  font-size: 10pt;
+}
+
+.play {
+  visibility: hidden;
+  margin-top: 5%;
+  font-size: 12pt;
+  font-family: Abel;
+  border: none;
+  outline: none;
+  background-color: grey;
+  color: white;
+}
+
+.play:hover {
+  background-color: #474747;
+  transition: 0.3s;
+}
+
+.p-column .show {
+  visibility: visible;
+}
