@@ -11,6 +11,14 @@
   </head>
 
   <body>
+    <!-- START OF GAME COUNTDOWN -->
+    <div class="modal" id="countdown">
+      <div class="modal-content">
+        <p> it's the final countdown! </p>
+        <p id="countdown-clock"> loading ... </p>
+      </div>
+    </div>
+
     <!-- NAVIGATION TABS -->
     <div class="tabs">
 
@@ -36,8 +44,12 @@
       <!-- USER INPUT BOX -->
       <div>
       <form>
-        <input id="user-input" type="text" placeholder="Type text here" onclick="timer()" onkeyup="onKeyPress()">
+        <input id="user-input" type="text" placeholder="Type text here" onkeyup="onKeyPress()" disabled>
       </form>
+      </div>
+
+      <div>
+        <button class="play" id="start" onclick="start()">start</button>
       </div>
 
       <!-- END OF GAME STATS -->

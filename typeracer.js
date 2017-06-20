@@ -1,3 +1,41 @@
+// INITIALIZE GAME
+function start() {
+  var userInput = document.getElementById("user-input");
+  var start = document.getElementById("start");
+  var countdown = document.getElementById("countdown");
+  countdown.style.display = "block";
+  userInput.disabled = false;
+  userInput.focus();
+  start.disabled = true;
+  count_down();
+}
+
+// GAME COUNTDOWN
+// counts down 5 seconds - then game begins
+function count_down() {
+  var id = setInterval(frame, 1000);
+  var countdown = document.getElementById("countdown-clock");
+  var clock = 5;
+
+  function frame(){
+    if (clock === -1){
+      // stop showing countdown
+      document.getElementById("countdown").style.display = "none";
+      clearInterval(id);
+      timer();
+    }
+    else if (clock === 0){
+      countdown.innerHTML = "go!";
+      clock--;
+    }
+    else {
+      // decrement counter
+      countdown.innerHTML = clock;
+      clock--;
+    }
+  }
+}
+
 // WHEN USER CLICKS ON TAB
 function openTab(evt, tab_name) {
   // Declare all variables
@@ -56,10 +94,18 @@ function setPassage(evt, passage_num){
 
 function play() {
   var passtab = document.getElementById("pass-tab");
+
+  // Show home tab screen
   document.getElementById("passages").style.display = "none";
   document.getElementById("home").style.display = "block";
+
+  // Disable passages tab
   passtab.className = passtab.className.replace(" active", "");
+
+  // Highlight home tab
   document.getElementById("home-tab").className += " active";
+
+  // start game
   enable();
   document.getElementById("stats").classList.remove("show");
 }
@@ -68,6 +114,7 @@ function play() {
 function timer(){
   var id = setInterval(frame, 10);
   var userInput = document.getElementById("user-input");
+  var start = document.getElementById("start");
   var str = document.getElementById("game").innerHTML;
   var arr = str.split(" ");
   var time = 0;
@@ -75,6 +122,7 @@ function timer(){
   function frame() {
     if (str === userInput.value){
       displayStats(time, arr.length);
+      start.style.display = "none";
       clearInterval(id);
     }
     else{
@@ -85,11 +133,15 @@ function timer(){
 
 function enable() {
   var userInput = document.getElementById("user-input")
+  var countdown = document.getElementById("countdown");
   userInput.disabled = false;
   userInput.value = "";
+  userInput.focus();
+  countdown.style.display = "block";
+  document.getElementById("countdown-clock").innerHTML = "loading..."
   document.getElementById("stats").classList.remove("show");
   document.getElementById("progress-bar").style.width = "0.5%";
-  timer();
+  count_down();
 }
 
 // WHILE GAME IS RUNNING //
@@ -143,6 +195,7 @@ function displayStats(time, word_count){
   var wpmStat = document.getElementById("wpm");
   var timeStat = document.getElementById("time");
   var title = document.getElementById("done");
+  var userInput = document.getElementById("user-input");
   var wpm = word_count / time * 60;
   var one, two, three, four, five;
 
@@ -192,6 +245,7 @@ function resetScores() {
   var three = document.getElementById("l-three");
   var four = document.getElementById("l-four");
   var five = document.getElementById("l-five");
+  document.getElementById("avg").innerHTML = "";
 
   two.innerHTML = "";
   three.innerHTML = "";
