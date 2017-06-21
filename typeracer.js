@@ -238,6 +238,57 @@ function displayStats(time, word_count){
   popup.classList.add("show");
   updateScores(wpm);
   updateStats(wpm);
+  updateTopScores(wpm);
+}
+
+function updateTopScores(wpm) {
+  var one, two, three, four, five;
+  var topScores = [];
+  var elems;
+
+  one = document.getElementById("t-one");
+  two = document.getElementById("t-two");
+  three = document.getElementById("t-three");
+  four = document.getElementById("t-four");
+  five = document.getElementById("t-five");
+
+  elems = [one, two, three, four, five];
+
+  if (one.innerHTML !== "") {
+    topScores.push(getScore(one));
+  }
+
+  if (two.innerHTML !== "") {
+    topScores.push(getScore(two));
+  }
+
+  if (three.innerHTML !== "") {
+    topScores.push(getScore(three));
+  }
+
+  if (four.innerHTML !== ""){
+    topScores.push(getScore(four));
+  }
+
+  if (five.innerHTML !== ""){
+    topScores.push(getScore(five));
+  }
+
+  topScores.push(wpm);
+  topScores.sort(function(a, b) {return b - a});
+
+  for (var i = 0; i < topScores.length; i++){
+    if (i !== 5) {
+      var num = i + 1;
+      elems[i].innerHTML = num + ". " + topScores[i].toPrecision(3) + " wpm";
+    }
+  }
+}
+
+function getScore(doc) {
+  var temp = doc.innerHTML.split(" ");
+  temp = temp[1];
+  return (parseFloat(temp));
 }
 
 function updateStats(new_score){
