@@ -210,34 +210,83 @@ function displayStats(time, word_count){
   timeStat.innerHTML = "Time: " + time.toPrecision(3) + "s";
 
   // Update last scores column in profile
-  if (one.innerHTML === ""){
-    one.innerHTML = "1. " + wpm.toPrecision(3)+ " wpm";
-  }
-
-  else if (two.innerHTML === ""){
-    two.innerHTML = "2. " + wpm.toPrecision(3)+ " wpm";
-  }
-
-  else if (three.innerHTML === ""){
-    three.innerHTML = "3. " + wpm.toPrecision(3)+ " wpm";
-  }
-
-  else if (four.innerHTML === ""){
-    four.innerHTML = "4. " + wpm.toPrecision(3)+ " wpm";
-  }
-
-  else if (five.innerHTML === ""){
-
-    five.innerHTML = "5. " + wpm.toPrecision(3)+ " wpm";
-    getAvg(one, two, three, four, five);
-  }
-
-  else {
-    one.innerHTML = "1. \t" + wpm.toPrecision(3)+ " wpm";
-    resetScores();
-  }
+  // if (one.innerHTML === ""){
+  //   one.innerHTML = "1. " + wpm.toPrecision(3)+ " wpm";
+  // }
+  //
+  // else if (two.innerHTML === ""){
+  //   two.innerHTML = "2. " + wpm.toPrecision(3)+ " wpm";
+  // }
+  //
+  // else if (three.innerHTML === ""){
+  //   three.innerHTML = "3. " + wpm.toPrecision(3)+ " wpm";
+  // }
+  //
+  // else if (four.innerHTML === ""){
+  //   four.innerHTML = "4. " + wpm.toPrecision(3)+ " wpm";
+  // }
+  //
+  // else if (five.innerHTML === ""){
+  //
+  //   five.innerHTML = "5. " + wpm.toPrecision(3)+ " wpm";
+  //   getAvg(one, two, three, four, five);
+  // }
+  //
+  // else {
+  //   one.innerHTML = "1. \t" + wpm.toPrecision(3)+ " wpm";
+  //   resetScores();
+  // }
 
   popup.classList.add("show");
+  updateScores(wpm);
+}
+
+function updateScores(new_score) {
+  var one, two, three, four, five;
+  var scores = [];
+
+  one = document.getElementById("l-one");
+  two = document.getElementById("l-two");
+  three = document.getElementById("l-three");
+  four = document.getElementById("l-four");
+  five = document.getElementById("l-five");
+
+  var elems = [one, two, three, four, five];
+  // make an array of the previous scores
+  if (one.innerHTML !== ""){
+    scores.push(one.innerHTML);
+  }
+
+  if (two.innerHTML !== ""){
+    scores.push(two.innerHTML);
+  }
+
+  if (three.innerHTML !== ""){
+    scores.push(three.innerHTML);
+  }
+
+  if (four.innerHTML !== ""){
+    scores.push(four.innerHTML);
+  }
+
+  scores.splice(0, 0, new_score);
+
+
+  for (var i = 0; i < scores.length; i++){
+    var scoreNum = i + 1;
+    if (i === 0)
+      elems[i].innerHTML =  scoreNum + ". " + scores[i].toPrecision(3);
+    else {
+      var str = scores[i];
+      str = str.replace(i + ".", scoreNum + ".");
+      elems[i].innerHTML = str;
+    }
+  }
+
+  if (five.innerHTML !== "") getAvg(one, two, three, four, five);
+
+
+
 }
 
 function resetScores() {
