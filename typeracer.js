@@ -87,36 +87,82 @@ function openTab(evt, tab_name) {
 }
 
 /******** FOR CHOOSING THE PASSAGE *****/
-function setPassage(evt, passage_num){
+function setPassage(passage_num){
   var passage = document.getElementById("game");
   var str1 = "The quick brown fox jumps over the lazy dog!";
   var str2 = "Happiness can be found, even in the darkest of times, if one remembers to turn on the light.";
   var str3 = "Everybody is a Genius. But if you Judge a Fish by its Ability to Climb a Tree, It will live Its whole Life Believing that It Is Stupid.";
+  var str4 = "I don't know half of you half as well as I should like; And I like less than half of you, half as well as you deserve!";
+  var str5 = "A long time ago, in a galaxy far far away ... It is a period of civil war. Rebel spaceships, striking from a hidden base have won their first victory against the evil Galactic Empire.";
+  var str6 = "\"Where are the people?\", resumed the Little Prince at last. \"It's a little lonely in the desert...\" \"It is lonely when you are among people, too,\" said the snake."
   var columns = document.getElementsByClassName("p-column");
-
-  if (passage_num === 1){
-    passage.innerHTML = str1;
-    document.getElementById("playone").classList.add("show");
-    document.getElementById("playtwo").classList.remove("show");
-    document.getElementById("playthree").classList.remove("show");
-  }
-  else if (passage_num === 2){
-    passage.innerHTML = str2;
-    document.getElementById("playone").classList.remove("show");
-    document.getElementById("playtwo").classList.add("show");
-    document.getElementById("playthree").classList.remove("show");
-  }
-  else if (passage_num === 3){
-    passage.innerHTML = str3;
-    document.getElementById("playone").classList.remove("show");
-    document.getElementById("playtwo").classList.remove("show");
-    document.getElementById("playthree").classList.add("show");
-  }
 
   for (var i = 0; i < columns.length;i++){
     columns[i].className = columns[i].className.replace(" active", "");
   }
-  evt.currentTarget.className += " active";
+
+  if (passage_num === 1){
+    passage.innerHTML = str1;
+    document.getElementById("p-one").className += " active";
+    document.getElementById("playone").classList.add("show");
+    document.getElementById("playtwo").classList.remove("show");
+    document.getElementById("playthree").classList.remove("show");
+    document.getElementById("playfour").classList.remove("show");
+    document.getElementById("playfive").classList.remove("show");
+    document.getElementById("playsix").classList.remove("show");
+  }
+  else if (passage_num === 2){
+    passage.innerHTML = str2;
+    document.getElementById("p-two").className += " active";
+    document.getElementById("playone").classList.remove("show");
+    document.getElementById("playtwo").classList.add("show");
+    document.getElementById("playthree").classList.remove("show");
+    document.getElementById("playfour").classList.remove("show");
+    document.getElementById("playfive").classList.remove("show");
+    document.getElementById("playsix").classList.remove("show");
+  }
+  else if (passage_num === 3){
+    passage.innerHTML = str3;
+    document.getElementById("p-three").className += " active";
+    document.getElementById("playone").classList.remove("show");
+    document.getElementById("playtwo").classList.remove("show");
+    document.getElementById("playthree").classList.add("show");
+    document.getElementById("playfour").classList.remove("show");
+    document.getElementById("playfive").classList.remove("show");
+    document.getElementById("playsix").classList.remove("show");
+  }
+  else if (passage_num === 4) {
+    passage.innerHTML = str4;
+    document.getElementById("p-four").className += " active";
+    document.getElementById("playone").classList.remove("show");
+    document.getElementById("playtwo").classList.remove("show");
+    document.getElementById("playthree").classList.remove("show");
+    document.getElementById("playfour").classList.add("show");
+    document.getElementById("playfive").classList.remove("show");
+    document.getElementById("playsix").classList.remove("show");
+  }
+
+  else if (passage_num === 5) {
+    passage.innerHTML = str5;
+    document.getElementById("p-five").className += " active";
+    document.getElementById("playone").classList.remove("show");
+    document.getElementById("playtwo").classList.remove("show");
+    document.getElementById("playthree").classList.remove("show");
+    document.getElementById("playfour").classList.remove("show");
+    document.getElementById("playfive").classList.add("show");
+    document.getElementById("playsix").classList.remove("show");
+  }
+
+  else if (passage_num === 6) {
+    passage.innerHTML = str6;
+    document.getElementById("p-six").className += " active";
+    document.getElementById("playone").classList.remove("show");
+    document.getElementById("playtwo").classList.remove("show");
+    document.getElementById("playthree").classList.remove("show");
+    document.getElementById("playfour").classList.remove("show");
+    document.getElementById("playfive").classList.remove("show");
+    document.getElementById("playsix").classList.add("show");
+  }
 }
 
 function play() {
@@ -158,6 +204,12 @@ function timer(){
   }
 }
 
+function refresh() {
+  var num = Math.floor((Math.random() * 6) + 1);
+  setPassage(num);
+  enable();
+}
+
 function enable() {
   var userInput = document.getElementById("user-input")
   var countdown = document.getElementById("countdown");
@@ -171,9 +223,11 @@ function enable() {
 }
 
 // WHILE GAME IS RUNNING //
-function onKeyPress() {
+function onKeyPress(word_id) {
     // Create array containing passage
     var str = document.getElementById("game").innerHTML;
+
+    // create array with the words in the passage
     var arr = str.split("");
 
     // Create array of user input text
@@ -182,7 +236,7 @@ function onKeyPress() {
 
     // Check if user input matches passage
     for (var i = 0; i < userText.length; i++) {
-      if (userText[i] !== str[i]){
+      if (userText[i] !== arr[i]){
         incorrectInput(userInput);
         return;
       }
