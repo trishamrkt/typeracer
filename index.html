@@ -19,6 +19,20 @@
       </div>
     </div>
 
+    <!-- EDIT PROFILE INFO SCREEN -->
+    <div class="modal" id="edit">
+      <div class="modal-content">
+        <h1>edit profile</h1>
+        <form>
+          <p>username: </p>
+          <input type="text" id="username" class="edit-input" placeholder="Enter new name">
+          <p>profile picture: </p>
+          <input type="url" id="dp" class="edit-input" placeholder="Enter image URL">
+        </form>
+        <div><button class="play" id="exit" onclick="exit_edit()">done</button></div>
+      </div>
+    </div>
+
     <!-- NAVIGATION TABS -->
     <div class="tabs">
 
@@ -66,6 +80,8 @@
     <!-- PROFILE STATS -->
     <div id="profile" class="tabcontent">
       <h3>profile</h3>
+
+      <!-- LAST 5 SCORES COLUMN -->
       <div class="column">
         <h2 id="last-scores">last 5 scores:</h2>
         <p id="l-one"></p>
@@ -76,12 +92,27 @@
         <p id="avg"></p>
       </div>
 
+      <!-- TOP 5 SCORES COLUMN -->
       <div class="column">
         <h2 id="best-scores">top 5 scores:</h2>
       </div>
 
+      <!-- PROFILE STATS COLUMN -->
       <div class="column">
-        <h2 id="other">another title</h2>
+        <h2 id="profile-name">name</h2>
+
+        <div id="sidebar">
+          <img src="https://68.media.tumblr.com/623eb028329fa9f24f9a3e65c4d915b4/tumblr_orwg1eaqe81qb0g84o1_250.png" id="sidebar-pic"\>
+        </div>
+
+        <div class="user-stats">
+          <p>wpm: </p>
+          <p id="avg-wpm" class="user-info"></p>
+          <p>races completed: </p>
+          <p id="num-race" class="user-info">0</p>
+        </div>
+
+        <button class="play" id="edit-button" onclick="edit()">edit</button>
       </div>
     </div>
 

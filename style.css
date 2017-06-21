@@ -173,6 +173,51 @@ form {
   font-size: 17pt;
   color: #5e5e5e;
 }
+
+/* Sidebar */
+#sidebar {
+  width: 250px;
+  height: 250px;
+  background-color: black;
+  margin: 0 auto;
+}
+
+#sidebar-pic {
+  width: 250px;
+  height: 250px;
+}
+
+.user-stats {
+  font-size: 12pt;
+}
+
+.user-stats p {
+  margin-bottom: 0;
+  margin-top: 1%;
+}
+
+.user-info {
+  font-size: 11pt;
+  color: #474747;
+}
+
+#edit-button {
+  visibility: visible;
+}
+
+.modal-content form p {
+  padding-bottom: 3%;
+}
+
+.edit-input {
+  font-size: 15pt;
+  margin-bottom: 5%;
+}
+
+#exit {
+  visibility: visible;
+  margin-bottom: 3%;
+}
 /*********************************/
 
 

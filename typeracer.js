@@ -4,10 +4,34 @@ function start() {
   var start = document.getElementById("start");
   var countdown = document.getElementById("countdown");
   countdown.style.display = "block";
-  userInput.disabled = false;
-  userInput.focus();
   start.disabled = true;
   count_down();
+}
+
+// EDIT SCREEN
+function edit() {
+  var editScreen = document.getElementById("edit");
+  var username = document.getElementById("username");
+  var picURL = document.getElementById("dp");
+  username.value = "";
+  picURL.value = "";
+  editScreen.style.display = "block";
+}
+
+function exit_edit() {
+  var editScreen = document.getElementById("edit");
+  var username = document.getElementById("username").value;
+  var picURL = document.getElementById("dp").value;
+
+  if (username !== ""){
+    document.getElementById("profile-name").innerHTML = username;
+  }
+
+  if (picURL !== ""){
+    document.getElementById("sidebar-pic").src = picURL;
+  }
+
+  editScreen.style.display = "none";
 }
 
 // GAME COUNTDOWN
@@ -16,12 +40,15 @@ function count_down() {
   var id = setInterval(frame, 1000);
   var countdown = document.getElementById("countdown-clock");
   var clock = 5;
+  var userInput = document.getElementById("user-input")
 
   function frame(){
     if (clock === -1){
       // stop showing countdown
       document.getElementById("countdown").style.display = "none";
       clearInterval(id);
+      userInput.disabled = false;
+      userInput.focus();
       timer();
     }
     else if (clock === 0){
@@ -134,7 +161,6 @@ function timer(){
 function enable() {
   var userInput = document.getElementById("user-input")
   var countdown = document.getElementById("countdown");
-  userInput.disabled = false;
   userInput.value = "";
   userInput.focus();
   countdown.style.display = "block";
@@ -209,36 +235,28 @@ function displayStats(time, word_count){
   wpmStat.innerHTML = "WPM: " + wpm.toPrecision(3);
   timeStat.innerHTML = "Time: " + time.toPrecision(3) + "s";
 
-  // Update last scores column in profile
-  // if (one.innerHTML === ""){
-  //   one.innerHTML = "1. " + wpm.toPrecision(3)+ " wpm";
-  // }
-  //
-  // else if (two.innerHTML === ""){
-  //   two.innerHTML = "2. " + wpm.toPrecision(3)+ " wpm";
-  // }
-  //
-  // else if (three.innerHTML === ""){
-  //   three.innerHTML = "3. " + wpm.toPrecision(3)+ " wpm";
-  // }
-  //
-  // else if (four.innerHTML === ""){
-  //   four.innerHTML = "4. " + wpm.toPrecision(3)+ " wpm";
-  // }
-  //
-  // else if (five.innerHTML === ""){
-  //
-  //   five.innerHTML = "5. " + wpm.toPrecision(3)+ " wpm";
-  //   getAvg(one, two, three, four, five);
-  // }
-  //
-  // else {
-  //   one.innerHTML = "1. \t" + wpm.toPrecision(3)+ " wpm";
-  //   resetScores();
-  // }
-
   popup.classList.add("show");
   updateScores(wpm);
+  updateStats(wpm);
+}
+
+function updateStats(new_score){
+  var avgWpm = document.getElementById("avg-wpm");
+  var races = document.getElementById("num-race");
+  var oldwpm, numRace, newAvg;
+
+  numRace = parseInt(races.innerHTML);
+  numRace += 1;
+  races.innerHTML = numRace;
+
+  if (avgWpm.innerHTML === ""){
+    avgWpm.innerHTML = new_score.toPrecision(3);
+  }
+  else {
+    oldwpm = parseFloat(avgWpm.innerHTML);
+    newAvg = (oldwpm + new_score)/2;
+    avgWpm.innerHTML = newAvg.toPrecision(3);
+  }
 }
 
 function updateScores(new_score) {
@@ -275,7 +293,7 @@ function updateScores(new_score) {
   for (var i = 0; i < scores.length; i++){
     var scoreNum = i + 1;
     if (i === 0)
-      elems[i].innerHTML =  scoreNum + ". " + scores[i].toPrecision(3);
+      elems[i].innerHTML =  scoreNum + ". " + scores[i].toPrecision(3) + " wpm";
     else {
       var str = scores[i];
       str = str.replace(i + ".", scoreNum + ".");
