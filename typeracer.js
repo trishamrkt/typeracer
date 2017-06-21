@@ -189,12 +189,12 @@ function timer(){
   var userInput = document.getElementById("user-input");
   var start = document.getElementById("start");
   var str = document.getElementById("game").innerHTML;
-  var arr = str.split(" ");
+  var arr = str.split("");
   var time = 0;
 
   function frame() {
     if (str === userInput.value){
-      displayStats(time, arr.length);
+      displayStats(time, 1.0*arr.length/5);
       start.style.display = "none";
       clearInterval(id);
     }
