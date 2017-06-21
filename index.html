@@ -39,7 +39,7 @@
       <div class="buttons">
         <button class="tablinks active" id="home-tab" onclick="openTab(event, 'home')">home</button>
         <button class="tablinks" onclick="openTab(event, 'profile')">profile</button>
-        <button class="tablinks" onclick="openTab(event, 'high-score')">high scores</button>
+        <!-- <button class="tablinks" onclick="openTab(event, 'high-score')">high scores</button> -->
         <button class="tablinks" id="pass-tab" onclick="openTab(event, 'passages')">passage</button>
       </div>
       <h2 id="logo">racetype</h2>
@@ -58,7 +58,7 @@
       <!-- USER INPUT BOX -->
       <div>
       <form>
-        <input id="user-input" type="text" placeholder="Type text here" onkeyup="onKeyPress()" disabled>
+        <input id="user-input" type="text" placeholder="Type text here" onkeyup="onKeyPress(0)" disabled>
       </form>
       </div>
 
@@ -72,7 +72,7 @@
           <h1 id="done"></h1>
           <h4 id="wpm"></h4>
           <h4 id="time"></h4>
-          <button id="again" onclick="enable()">try again</button>
+          <button id="again" onclick="refresh()">try again</button>
         </div>
       </div>
     </div>
@@ -122,36 +122,54 @@
     </div>
 
     <!-- HIGH SCORES -->
-    <div id="high-score" class="tabcontent">
+    <!-- <div id="high-score" class="tabcontent">
       <h3>high scores</h3>
       <ol>
-        <!-- <li> patricai </li>
+        <li> patricai </li>
         <li></li>
         <li></li>
         <li></li>
-        <li>jimmeh</li> -->
+        <li>jimmeh</li>
       </ol>
-    </div>
+    </div> -->
 
     <!-- PASSAGES -->
     <div id="passages" class="tabcontent">
       <h3>passages</h3>
-      <div class="p-column" id="p-one" onclick="setPassage(event, 1)">
+      <div class="p-column" id="p-one" onclick="setPassage(1)">
         <p class="sentence"> The quick brown fox... </p>
         <p class="difficulty">RANDOM</p>
         <button class="play" id="playone" onclick="play()">play</button>
       </div>
 
-      <div class="p-column" id="p-two" onclick="setPassage(event, 2)">
+      <div class="p-column" id="p-two" onclick="setPassage(2)">
         <p class="sentence"> Happiness can be found...</p>
         <p class="difficulty">HARRY POTTER</p>
         <button class="play" id="playtwo" onclick="play()">play</button>
       </div>
 
-      <div class="p-column" id="p-three" onclick="setPassage(event, 3)">
+      <div class="p-column" id="p-three" onclick="setPassage(3)">
         <p class="sentence">Everybody is a genius...</p>
         <p class="difficulty">ALBERT EINSTEIN</p>
         <button class="play" id="playthree" onclick="play()">play</button>
+      </div>
+
+      <div class="p-column" id="p-four" onclick="setPassage(4)">
+        <p class="sentence">I don't know half...</p>
+        <p class="difficulty">LORD OF THE RINGS</p>
+        <button class="play" id="playfour" onclick="play()">play</button>
+      </div>
+
+      <div class="p-column" id="p-five" onclick="setPassage(5)">
+        <p class="sentence">A long time ago...</p>
+        <p class="difficulty">STAR WARS</p>
+        <button class="play" id="playfive" onclick="play()">play</button>
+      </div>
+
+      <div class="p-column" id="p-six" onclick="setPassage(6)">
+        <p class="sentence">Where are the people...</p>
+        <p class="difficulty">THE LITTLE PRINCE</p>
+        <button class="play" id="playsix" onclick="play()">play</button>
       </div>
     </div>
 
