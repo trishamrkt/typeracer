@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> /trishamrkt - Typeracer </title>
+
+    <!-- Fonts to be used -->
+    <link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet'>
+
+    <link type="text/css" rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- START OF GAME COUNTDOWN -->
+    <div class="modal" id="countdown">
+      <div class="modal-content">
+        <p> it's the final countdown! </p>
+        <p id="countdown-clock"> loading ... </p>
+      </div>
+    </div>
+
+    <!-- NAVIGATION TABS -->
+    <div class="tabs">
+
+      <div class="buttons">
+        <button class="tablinks active" id="home-tab" onclick="openTab(event, 'home')">home</button>
+        <button class="tablinks" onclick="openTab(event, 'profile')">profile</button>
+        <button class="tablinks" onclick="openTab(event, 'high-score')">high scores</button>
+        <button class="tablinks" id="pass-tab" onclick="openTab(event, 'passages')">passage</button>
+      </div>
+      <h2 id="logo">racetype</h2>
+    </div>
+
+    <!-- HOME PAGE - GAME -->
+    <div id="home" class="tabcontent">
+      <!-- PASSAGE TO BE TYPED -->
+      <div id="passage">
+         <p id="game">The quick brown fox jumps over the lazy dog!</p>
+
+        <!-- PROGRESS BAR -->
+        <div id="progress-bar"></div>
+      </div>
+
+      <!-- USER INPUT BOX -->
+      <div>
+      <form>
+        <input id="user-input" type="text" placeholder="Type text here" onkeyup="onKeyPress()" disabled>
+      </form>
+      </div>
+
+      <div>
+        <button class="play" id="start" onclick="start()">start</button>
+      </div>
+
+      <!-- END OF GAME STATS -->
+      <div class="popup">
+        <div class="popuptext" id="stats">
+          <h1 id="done"></h1>
+          <h4 id="wpm"></h4>
+          <h4 id="time"></h4>
+          <button id="again" onclick="enable()">try again</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROFILE STATS -->
+    <div id="profile" class="tabcontent">
+      <h3>profile</h3>
+      <div class="column">
+        <h2 id="last-scores">last 5 scores:</h2>
+        <p id="l-one"></p>
+        <p id="l-two"></p>
+        <p id="l-three"></p>
+        <p id="l-four"></p>
+        <p id="l-five"></p>
+        <p id="avg"></p>
+      </div>
+
+      <div class="column">
+        <h2 id="best-scores">top 5 scores:</h2>
+      </div>
+
+      <div class="column">
+        <h2 id="other">another title</h2>
+      </div>
+    </div>
+
+    <!-- HIGH SCORES -->
+    <div id="high-score" class="tabcontent">
+      <h3>high scores</h3>
+      <ol>
+        <!-- <li> patricai </li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li>jimmeh</li> -->
+      </ol>
+    </div>
+
+    <!-- PASSAGES -->
+    <div id="passages" class="tabcontent">
+      <h3>passages</h3>
+      <div class="p-column" id="p-one" onclick="setPassage(event, 1)">
+        <p class="sentence"> The quick brown fox... </p>
+        <p class="difficulty">RANDOM</p>
+        <button class="play" id="playone" onclick="play()">play</button>
+      </div>
+
+      <div class="p-column" id="p-two" onclick="setPassage(event, 2)">
+        <p class="sentence"> Happiness can be found...</p>
+        <p class="difficulty">HARRY POTTER</p>
+        <button class="play" id="playtwo" onclick="play()">play</button>
+      </div>
+
+      <div class="p-column" id="p-three" onclick="setPassage(event, 3)">
+        <p class="sentence">Everybody is a genius...</p>
+        <p class="difficulty">ALBERT EINSTEIN</p>
+        <button class="play" id="playthree" onclick="play()">play</button>
+      </div>
+    </div>
+
+
+    <!-- LINK JAVASCRIPT -->
+    <script src="typeracer.js"></script>
+
+  </body>
+
+</html>
